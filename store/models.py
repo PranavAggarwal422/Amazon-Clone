@@ -22,6 +22,10 @@ class Product(models.Model):
     description = models.TextField(blank = True)
     features = models.JSONField(default = list , blank=True)
 
+    rating = models.FloatField(default=0)
+    num_reviews = models.IntegerField(default=0)
+    popularity_score = models.IntegerField(default=0)
+
     in_stock = models.BooleanField(default=True)
     seller = models.CharField(max_length=200)
     # def __str__(self):
