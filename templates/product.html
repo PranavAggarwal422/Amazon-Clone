@@ -4,7 +4,7 @@
 {% block content %}
         <div class="product-container d-flex px-3 mt-4">
             <div class="product-img-container">
-                <img src = "/media/{{product.image}}">
+                <img src="{{ product.image_url }}" alt="{{ product.name }}">
             </div>
 
             <div class="product-details-container">

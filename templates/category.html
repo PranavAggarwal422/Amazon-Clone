@@ -47,7 +47,7 @@
                 {% for product in products %}
                     <div class="product">
                         <a class="product-img" href = "{% url 'product_detail' product.id %}">
-                            <img src="/media/{{product.image}}">
+                            <img src="{{ product.image_url }}" alt="{{ product.name }}">
                         </a>
                         <div class="product-details">
                             <a  href = "{% url 'product_detail' product.id %}">
@@ -55,9 +55,9 @@
                                 <div class="other-details">
                                     <div class="price-details">
                                         <span class="price-details-currency">₹</span>
-                                        <span class="price-details-price">{{product.price|floatformat|intcomma}}</span>
+                                        <span class="price-details-price">{{product.price|floatformat:0|intcomma}}</span>
                                         <div class="mrp-details">
-                                            <span class="mrp-details-mrp">M.R.P.: <span style = "text-decoration: line-through">₹{{product.mrp|floatformat|intcomma}}</span></span>
+                                            <span class="mrp-details-mrp">M.R.P.: <span style = "text-decoration: line-through">₹{{product.mrp|floatformat:0|intcomma}}</span></span>
                                             <span class="mrp-details-discount"> ({{product.discount_percent}}% off)</span>
                                         </div>
                                     </div>

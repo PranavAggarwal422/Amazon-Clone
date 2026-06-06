@@ -1,4 +1,4 @@
-from store.models import CartItem 
+from store.models import CartItem, Category
 
 def cart_item_count(request) : 
     if request.user.is_authenticated : 
@@ -8,3 +8,6 @@ def cart_item_count(request) :
         count = 0 
     
     return {"cart_item_count" : count}
+
+def all_categories(request):
+    return {"all_categories": Category.objects.all().order_by("name")}

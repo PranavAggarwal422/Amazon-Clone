@@ -29,12 +29,10 @@
         <div class="search-bar d-flex">
           <div>
             <select class="nav-search-select" id="category-select" name = "search_category">
-              <option>All</option>
-              <option>Books</option>
-              <option>Amazon Pharmacy</option>
-              <option>Electronics</option>
-              <option>Amazon Fashion</option>
-              <option>Amazon Fresh Meat</option>
+              <option value="">All</option>
+              {% for category in all_categories %}
+              <option value="{{ category.id }}">{{ category.name }}</option>
+              {% endfor %}
             </select>
           </div>
           <div class="nav-search-text">
