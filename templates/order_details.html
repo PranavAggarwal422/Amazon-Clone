@@ -60,7 +60,7 @@
     <div class="row g-0">
       <div class="col-md-2 text-center p-2">
         {% if item.product_image %}
-          <img src="{{ item.product_image.url }}" class="img-fluid rounded" style="max-height: 100px;">
+          <img src="{{ item.product_image}}" class="img-fluid rounded" style="max-height: 100px;">
         {% else %}
           <img src="{% static 'default-product.png' %}" class="img-fluid rounded" style="max-height: 100px;">
         {% endif %}

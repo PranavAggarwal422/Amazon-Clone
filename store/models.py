@@ -93,7 +93,7 @@ class OrderItem(models.Model):
     # Preserved snapshot fields
     product_name = models.CharField(max_length=200)
     product_price_at_order = models.DecimalField(max_digits=10, decimal_places=2)
-    product_image = models.ImageField(upload_to='order_items/', null=True, blank=True)
+    product_image = models.URLField(blank=True, null = True)
 
     quantity = models.PositiveIntegerField()
     subtotal = models.DecimalField(max_digits=10, decimal_places=2)  # = quantity * product_price_at_order

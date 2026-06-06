@@ -4,6 +4,7 @@ from .forms import CustomUserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages 
 from django.utils import timezone
+from django.db.models import Q
 
 def register(request) : 
     if request.method == "POST" : 
@@ -81,7 +82,7 @@ def checkout(request) :
 
         # Create order items
         for item in cart_items : 
-            OrderItem.objects.create(order = order , product = item.product , quantity = item.quantity , subtotal = item.subtotal() , product_name = item.product.name , product_price_at_order = item.product.price , product_image = item.product.image)
+            OrderItem.objects.create(order = order , product = item.product , quantity = item.quantity , subtotal = item.subtotal() , product_name = item.product.name , product_price_at_order = item.product.price , product_image = item.product.image_url)
 
         # Clear cart
         cart_items.delete()
@@ -137,19 +138,18 @@ def buy_now(request , product_id) :
 
         # Create order items
        
-        OrderItem.objects.create(order = order , product = product , quantity = 1 , subtotal = product.price , product_name = product.name , product_price_at_order = product.price , product_image = product.image)
+        OrderItem.objects.create(order = order , product = product , quantity = 1 , subtotal = product.price , product_name = product.name , product_price_at_order = product.price , product_image = product.image_url)
 
         request.session['order_id'] = order.id
         return redirect("order_success")
 
     return render(request , "checkout.html" , {"product" : product , "total_price" : product.price})
     
-
-
-from django.db.models import Q
-
 def search(request):
-    query = request.GET.get("q").strip()
+    query = request.GET.get("q", "").strip()
+    if not query:
+        return redirect("home")
+    
     keywords = query.split()
     data = {}
 
