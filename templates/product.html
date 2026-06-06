@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+        <div class="product-container d-flex px-3 mt-4">
+            <div class="product-img-container">
+                <img src = "/media/{{product.image}}">
+            </div>
+
+            <div class="product-details-container">
+                <div class="product-title">
+                    <h2>{{product.name}}</h2>
+                </div>
+                <hr>
+
+                <div class="product-details-container-price">
+                    <div class="product-price-details d-flex align-items-center">
+                        <span class="product-discount">-{{product.discount_percent|floatformat}}%</span>
+                        <div class="price-details">
+                            <span class="price-details-currency">₹</span>
+                            <span class="price-details-price">{{product.price|floatformat|intcomma}}</span>
+                        </div>
+                    </div>
+                    <div class="mrp-details">
+                            <span class="mrp-details-mrp">M.R.P.: <span style = "text-decoration: line-through">₹{{product.mrp|floatformat|intcomma}}</span></span>
+                    </div>
+                    <span style = "font-size: 14px; line-height: 20px;margin-left: 5px;">Inclusive of all taxes</span>
+                </div>
+                <hr>
+
+                <div class="product-details-features">
+                    <h1>Product details</h1>
+                    <table>
+                        <tbody>
+                            {% for key , value in product.specifications.items %}
+                            <tr>
+                                <td class = "pe-1 pb-1">
+                                    <span class = "features-heading">{{key}}</span>
+                                </td>
+                                <td class = "ps-1 pb-1">
+                                    <span class = "feature">{{value}}</span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+                <hr>
+                <div class="product-details-container-about">
+                    <h1>About this item</h1>
+                    <ul>
+                        {% for feature in product.features %}
+                            {% if forloop.counter <= 7 %}
+                                <li><span>{{feature}}</span></li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if product.features|length > 7 %}
+                        <li class="product-details-seeall see-all-btn"><a><i class="fa-solid fa-caret-down"></i>See more</a></li>
+                        {% endif %}
+                    </ul>
+
+                    <ul style="height : 0px; overflow : hidden;">
+                        {% for feature in product.features %}
+                            {% if forloop.counter > 7 %}
+                            <li><span>{{feature}}</span></li>
+                            {% endif %}
+                        {% endfor %}
+                        <li class="product-details-seeless see-less-btn"><a><i class="fa-solid fa-caret-up"></i>See Less</a></li>
+                    </ul>
+                </div>
+                <hr>
+            </div>
+
+            <div class="product-payment-container">
+                <div class="product-payment-details">
+                    <div class="product-delivery-details mb-3">
+                        <span>Free scheduled delivery as soon as <b>Tuesday, 24 June, 7 am - 9 pm.</b></span>
+                    </div>
+                    <div class="product-isinstock mb-3">
+                        {% if product.in_stock %}
+                        <span>In stock</span>
+                        {% else %}
+                        <span class="stock-warning">Out of stock</span>
+                        {% endif %}
+                    </div>
+                    <div class="seller-details">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="seller-details-heading">Ships from</td>
+                                    <td class = "seller-detail" style = "color : black">Amazon</td>
+                                </tr>
+                                <tr>
+                                    <td class="seller-details-heading">Sold by</td>
+                                    <td class = "seller-detail">{{product.seller}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="seller-details-heading">Payment</td>
+                                    <td class = "seller-detail">Secure transaction</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    {% if product.in_stock %}
+                    {% comment %} <div class="product-quantity-container my-3">
+                        <div class="product-quantity d-flex">
+                            <div class="product-quantity-text">
+                                <span>Quantity:</span>
+                            </div>
+                            <div class="product-quantity-select">
+                                <select id = "quantity">
+                                    <option>1</option>
+                                    <option>2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+                    
+                    <div class="product-buy-buttons d-flex flex-column gap-2 my-4">
+                        {% if user.is_authenticated %}
+                        <form action = "{% url 'add_to_cart' product.id %}" method = "post">
+                            {% csrf_token %}
+                            <button class = "add-cart-btn">Add to Cart</button>
+                        </form> 
+
+                        {% else %}
+                        <a href = "{% url 'login' %}?next={% url 'add_to_cart' product.id %}">
+                            <button class = "add-cart-btn">Add to Cart</button>
+                        </a> 
+
+                        {% endif %}
+                        
+                        <form action = "{% url 'buy_now' product.id %}">
+                            <button class = "buy-now-btn">Buy Now </button>
+                        </form>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+{% endblock %}

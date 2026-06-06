@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5 text-center">
+  <img src="{% static 'images/success-tick.jpg' %}" alt="Success" width="100" class="mb-4">
+
+  <h2 class="text-success mb-3">Thank you for your order!</h2>
+  <p class="lead">Your order has been successfully placed.</p>
+  
+  {% if order_id %}
+    <p><strong>Order ID:</strong> {{ order_id }}</p>
+  {% endif %}
+
+  <p>You will receive a confirmation email shortly.</p>
+
+  <a href="{% url 'home' %}" class="btn btn-primary mt-4">Continue Shopping</a>
+</div>
+{% endblock %}

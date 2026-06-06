@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+        <div class="category-container pt-3 mx-1 d-flex">
+            <div class="filter-panel">
+                {% for option in filter_options %}
+                <div class="filter-panel-category mb-3">
+                    <h5>{{option.field_name}}</h5>
+                    <ul class="filter-panel-options">
+                        {% for value in option.values.all %}
+                            {% if forloop.counter <= 7 %}
+                            <li><label class="d-flex align-items-center mb-1">
+                                    <input type="checkbox"><span>{{value.value}}</span>
+                                </label></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if option.values.all|length > 7 %}
+                                <li class="filter-panel-seeall see-all-btn"><a><i class="fa-solid fa-caret-down"></i>See
+                                more</a></li>
+                        {% endif %}
+                    </ul>
+
+                     <ul class="filter-panel-options" style="height : 0px; overflow : hidden;">
+                        {% for value in option.values.all %}
+                            {% if forloop.counter > 7 %}
+                            <li><label class="d-flex align-items-center mb-1">
+                                    <input type="checkbox"><span>{{value.value}}</span>
+                                </label></li>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        <li class="filter-panel-seeless see-less-btn"><a><i class="fa-solid fa-caret-up"></i>See
+                                Less</a></li>
+                    </ul>
+
+                </div>
+                {% endfor %}
+            </div>
+            <div class="products-container flex-grow-1 ps-2">
+                <div class="category-container-heading">
+                    <h2>Results</h2>
+                    <span>Check each product page for other buying options</span>
+                </div>
+
+                {% for product in products %}
+                    <div class="product">
+                        <a class="product-img" href = "{% url 'product_detail' product.id %}">
+                            <img src="/media/{{product.image}}">
+                        </a>
+                        <div class="product-details">
+                            <a  href = "{% url 'product_detail' product.id %}">
+                                <h2 class="truncate-2line">{{product.name}}</h2>
+                                <div class="other-details">
+                                    <div class="price-details">
+                                        <span class="price-details-currency">₹</span>
+                                        <span class="price-details-price">{{product.price|floatformat|intcomma}}</span>
+                                        <div class="mrp-details">
+                                            <span class="mrp-details-mrp">M.R.P.: <span style = "text-decoration: line-through">₹{{product.mrp|floatformat|intcomma}}</span></span>
+                                            <span class="mrp-details-discount"> ({{product.discount_percent}}% off)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="delivery-details">
+                                    <span><img src="{% static 'images/prime.png' %}"></span>
+                                    <p>FREE delivery <b>SUN, 22 JUN</b></p>
+                                    <p>Or fastest delivery <b>Tomorrow, 21 Jun</b></p>
+                                    {% if not product.in_stock %}
+                                    <p class="stock-warning mb-4">Out of stock</p>
+                                    {% endif %}
+                                </div>
+                            </a>
+
+                            {% if product.in_stock %}
+                            {% if user.is_authenticated %}
+                            <form action = "{% url 'add_to_cart' product.id %}" method = "post">
+                                {% csrf_token %}
+                                <button>Add to Cart</button>
+                            </form> 
+
+                            {% else %} 
+                            <a href = "{% url 'login' %}?next={% url 'add_to_cart' product.id %}">
+                                <button>Add to Cart</button>
+                            </a> 
+
+                            {% endif %}
+                            {% endif %}
+                        
+                        </div>
+                    </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+
+{% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<div class="container my-5">
+  <h2 class="mb-4">Order Details</h2>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-light d-flex justify-content-between align-items-center flex-wrap">
+      <div>
+        <strong>Order ID:</strong> {{ order.id }}<br>
+        <strong>Placed on:</strong> {{ order.created_at|naturaltime }}
+      </div>
+
+      {% if order.order_status == 'placed' or order.order_status == 'processing' %}
+      <form method="post" action="{% url 'cancel_order' order.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm btn-danger"
+                onclick="return confirm('Are you sure you want to cancel this order?');">
+          Cancel Order
+        </button>
+      </form>
+      {% endif %}
+    </div>
+
+    <div class="card-body">
+      <p><strong>Name:</strong> {{ order.name }}</p>
+      <p><strong>Phone:</strong> {{ order.phone }}</p>
+      <p><strong>Address:</strong><br>{{ order.address|linebreaksbr }}</p>
+      <p><strong>Payment Method:</strong> {{ order.get_payment_method_display }}</p>
+      <p><strong>Status:</strong> {{ order.get_order_status_display }}</p>
+
+      {% if order.order_status == 'delivered' and order.order_delivered_at %}
+        <p><strong>Delivered At:</strong> {{ order.order_delivered_at|date:"d M Y H:i" }}</p>
+      {% elif order.order_status == 'shipped' and order.order_shipped_at %}
+        <p><strong>Shipped At:</strong> {{ order.order_shipped_at|date:"d M Y H:i" }}</p>
+      {% elif order.order_status == 'processing' and order.order_processed_at %}
+        <p><strong>Processed At:</strong> {{ order.order_processed_at|date:"d M Y H:i" }}</p>
+      {% elif order.order_status == 'cancelled' and order.order_cancelled_at %}
+        <p><strong>Cancelled At:</strong> {{ order.order_cancelled_at|date:"d M Y H:i" }}</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <h5 class="mb-3">Ordered Items</h5>
+  {% for item in order.order_items.all %}
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-2 text-center p-2">
+        {% if item.product_image %}
+          <img src="{{ item.product_image.url }}" class="img-fluid rounded" style="max-height: 100px;">
+        {% else %}
+          <img src="{% static 'default-product.png' %}" class="img-fluid rounded" style="max-height: 100px;">
+        {% endif %}
+      </div>
+      <div class="col-md-10">
+        <div class="card-body">
+          <h6 class="card-title mb-1">{{ item.product_name }}</h6>
+          <p class="mb-1">Price: ₹{{ item.product_price_at_order|floatformat|intcomma }}</p>
+          <p class="mb-1">Quantity: {{ item.quantity }}</p>
+          <p class="mb-0">Subtotal: ₹{{ item.subtotal|floatformat|intcomma }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+  <div class="text-end mt-4">
+    <h4>Total Price: ₹{{ order.total_price|floatformat|intcomma }}</h4>
+  </div>
+</div>
+{% endblock %}

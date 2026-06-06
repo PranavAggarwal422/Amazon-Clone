@@ -1,0 +1,402 @@
+{% load static %}
+<header>
+  <div
+    class="header-1 d-flex {% if request.path != '/checkout/' %} justify-content-lg-evenly {% endif %} justify-content-between {% if request.path == '/' %} position-fixed top-0 {% endif %}"
+  >
+    <div class="nav-logo">
+      <a class="logo d-flex align-items-center hover-border" href="/">
+        <div class="logo-img"></div>
+        <span class="logo-in">.in</span>
+      </a>
+    </div>
+
+    {% if request.path != "/checkout/" %}
+    <div class="nav-location d-flex">
+      <div
+        class="hover-border d-flex align-items-center"
+        style="margin-top: 3px"
+      >
+        <i class="fa-solid fa-location-dot location-icon"></i>
+        <div class="location d-flex flex-column">
+          <span class="delivery-location">Delivering to</span>
+          <span class="update-location">Update location</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-search">
+      <form action = "{% url 'search' %}">
+        <div class="search-bar d-flex">
+          <div>
+            <select class="nav-search-select" id="category-select" name = "search_category">
+              <option>All</option>
+              <option>Books</option>
+              <option>Amazon Pharmacy</option>
+              <option>Electronics</option>
+              <option>Amazon Fashion</option>
+              <option>Amazon Fresh Meat</option>
+            </select>
+          </div>
+          <div class="nav-search-text">
+            <input
+              type="text"
+              placeholder="Search Amazon.in"
+              class="search-text"
+              name = "q"
+              required
+            />
+          </div>
+          <div>
+            <button class="nav-search-btn" type="submit">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="nav-account d-flex align-items-center">
+      {% if user.is_authenticated %}
+
+      <div class="dropdown">
+        <a
+          class="dropdown-toggle d-flex flex-column hover-border justify-content-center"
+          href="#"
+          aria-expanded="false"
+          data-bs-toggle="dropdown"
+        >
+          <span class="nav-primary"
+            >Hello, {{user.first_name|default:"User" }}</span
+          >
+          <span class="nav-secondary">Account & Lists</span>
+        </a>
+
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href = "{% url 'my_orders' %}">Your Orders</a></li>
+          <li><a class="dropdown-item" href="#">Your Wishlist</a></li>
+          <li><a class="dropdown-item" href="#">Your Account</a></li>
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+            <form action="{% url 'logout' %}" method="post">
+              {%csrf_token%}
+              <button type="submit" class="dropdown-item">Sign Out</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+
+      {% else %}
+      <a
+        class="d-flex flex-column hover-border justify-content-center"
+        href="{% url 'login' %}"
+      >
+        <span class="nav-primary">Hello, sign in</span>
+        <span class="nav-secondary">Account & Lists</span>
+      </a>
+      {% endif %}
+    </div>
+
+    <div class="nav-orders d-flex align-items-center">
+      <a class="d-flex flex-column hover-border justify-content-center" href = "{% url 'my_orders' %}">
+        <span class="nav-primary">Returns</span>
+        <span class="nav-secondary">& Orders</span>
+      </a>
+    </div>
+
+    {% else %}
+    <div class="nav-secure-checkout dropdown d-flex align-items-center">
+      <h3
+        class="dropdown-toggle text-white d-flex align-items-center"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Secure Checkout <i class = "fa-solid fa-caret-down ms-3"></i>
+      </h3>
+
+      <div class="dropdown-menu">
+        <span  class="dropdown-item">We secure your payment and personal information when you share or save it with us. We don't share payment details with third-party sellers. We don't sell your information to others.</span>
+      </div>
+    
+    </div>
+
+    {% endif %}
+    <div class="nav-cart d-flex align-items-center">
+      <a
+        class="d-flex align-items-center hover-border me-lg-0 me-1"
+        href="{% url 'view_cart' %}"
+      >
+        <img src="{% static 'images/cart-icon.png' %}" />
+        <span class="nav-cart-count">{{cart_item_count}}</span>
+        <span class="nav-secondary mt-3">Cart</span>
+      </a>
+    </div>
+  </div>
+
+  {% if request.path != '/checkout/' %}
+
+  <div
+    class="header-2 d-flex"
+    style="{% if request.path == '/' %}  margin-top: 60px {% endif %}"
+  >
+    <a data-bs-toggle="offcanvas" href="#offcanvas">
+      <div class="all-features hover-border-2 d-flex align-items-center mx-3">
+        <i class="fa-solid fa-bars"></i>
+        <span>All</span>
+      </div>
+    </a>
+
+    <div class="nav-shop">
+      <ul class="d-flex">
+        <li class="nav-shop-li">
+          <div class="nav-shop-div hover-border-2">
+            <a>Fresh</a>
+          </div>
+        </li>
+        <li class="nav-shop-li">
+          <div class="nav-shop-div hover-border-2">
+            <a>MX Player</a>
+          </div>
+        </li>
+        <li class="nav-shop-li">
+          <div class="nav-shop-div hover-border-2">
+            <a>Sell</a>
+          </div>
+        </li>
+        <li class="nav-shop-li">
+          <div class="nav-shop-div hover-border-2">
+            <a>Bestsellers</a>
+          </div>
+        </li>
+        <li class="nav-shop-li">
+          <div class="nav-shop-div hover-border-2">
+            <a>Mobiles</a>
+          </div>
+        </li>
+        <li class="nav-shop-li">
+          <div class="nav-shop-div hover-border-2">
+            <a>Prime</a>
+          </div>
+        </li>
+        <li class="nav-shop-li">
+          <div class="nav-shop-div hover-border-2">
+            <a>Today's Deal</a>
+          </div>
+        </li>
+        <li class="nav-shop-li">
+          <div class="nav-shop-div hover-border-2">
+            <a>Customer Service</a>
+          </div>
+        </li>
+        <li class="nav-shop-li">
+          <div class="nav-shop-div hover-border-2">
+            <a>Fashion</a>
+          </div>
+        </li>
+        <li class="nav-shop-li">
+          <div class="nav-shop-div hover-border-2">
+            <a>New Releases</a>
+          </div>
+        </li>
+        <li class="nav-shop-li">
+          <div class="nav-shop-div hover-border-2">
+            <a>Amazon Pay</a>
+          </div>
+        </li>
+        <li class="nav-shop-li">
+          <div class="nav-shop-div hover-border-2">
+            <a>Electronics</a>
+          </div>
+        </li>
+        <li class="nav-shop-li">
+          <div class="nav-shop-div hover-border-2">
+            <a>Home & Kitchen</a>
+          </div>
+        </li>
+        <li class="nav-shop-li">
+          <div class="nav-shop-div hover-border-2">
+            <a>Computer</a>
+          </div>
+        </li>
+        <li class="nav-shop-li">
+          <div class="nav-shop-div hover-border-2">
+            <a>Car & Motorbike</a>
+          </div>
+        </li>
+        <li class="nav-shop-li">
+          <div class="nav-shop-div hover-border-2">
+            <a>Books</a>
+          </div>
+        </li>
+        <li class="nav-shop-li">
+          <div class="nav-shop-div hover-border-2">
+            <a>Toys & Games</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+</header>
+
+<div class="overlay"></div>
+
+<div
+  class="offcanvas offcanvas-start"
+  tabindex="-1"
+  id="offcanvas"
+  aria-labelledby="offcanvasLabel"
+>
+  <div class="offcanvas-header">
+    <div class="customer-profile d-flex align-items-center">
+      <div class="customer-profile-icon"></div>
+      {% if user.is_authenticated %}
+      <b>Hello, {{user.first_name|default:"User" }}</b>
+      {% else %}
+      <b>Hello, sign in</b>
+      {% endif %}
+    </div>
+
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+
+  <div class="offcanvas-body">
+    <div class="offcanvas-section">
+      <div class="offcanvas-section-title">Trending</div>
+      <ul>
+        <li><a>Bestsellers</a></li>
+        <li><a>New Releases</a></li>
+        <li><a>Movers and Shakers</a></li>
+      </ul>
+    </div>
+
+    <div class="offcanvas-section">
+      <div class="offcanvas-section-title">Digital Content and Devices</div>
+      <ul>
+        <li>
+          <a>Echo & Alexa <i class="fa-solid fa-caret-right"></i></a>
+        </li>
+        <li>
+          <a>Fire TV <i class="fa-solid fa-caret-right"></i></a>
+        </li>
+        <li>
+          <a
+            >Kindle E-Readers and eBooks <i class="fa-solid fa-caret-right"></i
+          ></a>
+        </li>
+        <li>
+          <a>Audible Audiobooks <i class="fa-solid fa-caret-right"></i></a>
+        </li>
+        <li>
+          <a>Amazon Prime Video <i class="fa-solid fa-caret-right"></i></a>
+        </li>
+        <li>
+          <a>Amazon Prime Music <i class="fa-solid fa-caret-right"></i></a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="offcanvas-section">
+      <div class="offcanvas-section-title">Shop by Category</div>
+      <ul>
+        <li>
+          <a>Mobiles, Computers <i class="fa-solid fa-caret-right"></i></a>
+        </li>
+        <li>
+          <a
+            >TV, Appliances, Electronics <i class="fa-solid fa-caret-right"></i
+          ></a>
+        </li>
+        <li>
+          <a>Men's Fashion <i class="fa-solid fa-caret-right"></i></a>
+        </li>
+        <li>
+          <a>Women's Fashion <i class="fa-solid fa-caret-right"></i></a>
+        </li>
+        <li class="offcanvas-seeAll see-all-btn">
+          <a>See all<i class="fa-solid fa-caret-down"></i></a>
+        </li>
+      </ul>
+      <ul class="offcanvas-extra">
+        <div class="minidivider"></div>
+        <li>
+          <a>Home, Kitchen, Pets <i class="fa-solid fa-caret-right"></i></a>
+        </li>
+        <li>
+          <a>Beauty, Health, Grocery <i class="fa-solid fa-caret-right"></i></a>
+        </li>
+        <li>
+          <a
+            >Sports, Fitness, Bags, Luggage
+            <i class="fa-solid fa-caret-right"></i
+          ></a>
+        </li>
+        <li>
+          <a>Books <i class="fa-solid fa-caret-right"></i></a>
+        </li>
+        <li>
+          <a
+            >Movies, Music & Video Games<i class="fa-solid fa-caret-right"></i
+          ></a>
+        </li>
+        <li>
+          <a
+            >Car, Motorbike, Industrial<i class="fa-solid fa-caret-right"></i
+          ></a>
+        </li>
+        <li class="offcanvas-seeLess see-less-btn">
+          <a>see less<i class="fa-solid fa-caret-up"></i></a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="offcanvas-section">
+      <div class="offcanvas-section-title">Programs & Features</div>
+      <ul>
+        <li><a>Amazon Pay</a></li>
+        <li>
+          <a
+            >Gift Cards & Mobile Recharges<i class="fa-solid fa-caret-right"></i
+          ></a>
+        </li>
+        <li><a>Amazon Launchpad</a></li>
+        <li><a>Amazon Buisness</a></li>
+        <li class="offcanvas-seeAll see-all-btn">
+          <a>See all <i class="fa-solid fa-caret-down"></i></a>
+        </li>
+      </ul>
+      <ul class="offcanvas-extra">
+        <div class="minidivider"></div>
+        <li><a>Handlooms and Handicrafts</a></li>
+        <li><a>Amazon Saheli</a></li>
+        <li><a>Amazon Combos</a></li>
+        <li><a>Amazon Custom</a></li>
+        <li class="offcanvas-seeLess see-less-btn">
+          <a>see less <i class="fa-solid fa-caret-up"></i></a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="offcanvas-section" style="border-bottom: none">
+      <div class="offcanvas-section-title">Help & Settings</div>
+      <ul>
+        <li><a>Your Account</a></li>
+        <li><a>Customer Service</a></li>
+        {% if user.is_authenticated %}
+        <li>
+            <form action="{% url 'logout' %}" method="post">
+              {%csrf_token%}
+              <button type="submit" class="dropdown-item">Sign Out</button>
+            </form>
+        </li>
+        {% else %}
+        <li><a href="{% url 'login' %}" class = "text-decoration-none text-dark">Sign in</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,480 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+        <section class="carousel-section">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{% static 'images\Hero1.jpg' %}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'images\Hero2.jpg' %}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'images\Hero3.jpg' %}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'images\Hero4.jpg' %}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'images\Hero5.jpg' %}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'images\Hero6.jpg' %}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'images\Hero7.jpg' %}" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="shopping-section">
+            <div class="shopping">
+                <div class="row manage-col">
+                    <div class="col">
+                        <div class="shopping-container d-flex flex-column">
+                            <h2 class="truncate-2line">Appliances for your home | Up to 55% off</h2>
+
+                            <div class="shopping-container-img flex-grow-1 d-flex flex-column">
+                                <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/air-conditioner">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/AC.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Air Conditioners</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/refrigerator">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/Refrigerator.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Refrigerators</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/microwave">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/Microwave.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Microwaves</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/washing-machine">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/Washing machine.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Washing Machine</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <a href="#" class="see-more">See more</a>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="shopping-container d-flex flex-column">
+                            <h2 class="truncate-2line">Revamp your home in style</h2>
+
+                            <div class="shopping-container-img flex-grow-1 d-flex flex-column">
+                                <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/bedsheet">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/cushion.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Cushion covers, bedsheets & more</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/figurines">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/vases.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Figurines, vases & more</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/storage">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/storage.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Home storage</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/lighting">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/lighting.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Lighting solutions</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <a href="#" class="see-more">Explore all</a>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="shopping-container d-flex flex-column">
+                            <h2 class="truncate-2line">Under ₹499 | Deals on home improvement essentials</h2>
+
+                            <div class="shopping-container-img flex-grow-1 d-flex flex-column">
+                                <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/cleaning-supplies">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/home_essentials.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Under ₹199 | Cleaning supplies</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/bathroom-accessories">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/bathroom accessories.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Under ₹399 | Bathroom accessories</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/home-tools">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/home tools.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Under ₹499 | Home tools</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/wallpapers">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/wallpaper.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Under ₹299 | Wallpapers</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <a href="#" class="see-more">See more</a>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="shopping-container d-flex flex-column">
+                            <h2 class="truncate-2line">Starting ₹149 | Headphones</h2>
+
+                            <div class="shopping-container-img flex-grow-1 d-flex flex-column">
+                                <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/boat">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/boat.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Boat</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/boult">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/boult.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Boult</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/noise">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/noise.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">noise</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/zebronic">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/zebronic.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">zebronic</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <a href="#" class="see-more">Explore all</a>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="shopping-container d-flex flex-column">
+                            <h2 class="truncate-2line">Latest styles | Dresses, kurta & more</h2>
+
+                            <div class="shopping-container-img flex-grow-1 d-flex flex-column">
+                                <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/kurta-sets">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/kurta.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Kurta & sets</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/tops">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/tops.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Tops</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/dresses">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/dresses.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Dresses</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/sarees">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/sarees.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Sarees</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <a href="#" class="see-more">See more</a>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="shopping-container d-flex flex-column">
+                            <h2 class="truncate-2line">Automotive essentials | Up to 60% off</h2>
+
+                            <div class="shopping-container-img flex-grow-1 d-flex flex-column">
+                                <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/cleaning-accessories">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/cleaning_access.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Cleaning accessories</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/tyre-and-rim-care">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/tyre.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Tyre & rim care</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/helmets">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/helmet.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Helmets</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/vacuum-cleaner">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/vaccum cleaner.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Vaccum cleaner</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <a href="#" class="see-more">Explore all</a>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="shopping-container d-flex flex-column">
+                            <h2 class="truncate-2line">Starting ₹199 | Amazon Brands & more</h2>
+
+                            <div class="shopping-container-img flex-grow-1 d-flex flex-column">
+                                <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/bedsheet">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/bedsheet.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Bedsheets</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/curtains">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/curtain.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Curtains</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/ironing-board">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/ironing_board.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Ironing board</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/home-decor">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/decor.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Home decor</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <a href="#" class="see-more">See more</a>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="shopping-container d-flex flex-column">
+                            <h2 class="truncate-2line">Up to 50% off | Baby care & toys | Amazon Brands</h2>
+
+                            <div class="shopping-container-img flex-grow-1 d-flex flex-column">
+                                <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/diaper-wipes">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/diaper.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Diaper & wipes</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/rc-cars">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/rc_car.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">RC cars</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/ride-on-toy">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/rideon.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Ride-On toy</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/baby-safety">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/baby_safety.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Baby safety solutions</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <a href="#" class="see-more">Explore all</a>
+                        </div>
+                    </div>
+
+                    <div class="col extra-shopping-col">
+                        <div class="shopping-container d-flex flex-column">
+                            <h2 class="truncate-2line">Up to 60% Off | Top furniture deals</h2>
+
+                            <div class="shopping-container-img flex-grow-1 d-flex flex-column">
+                                <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/bedsheet">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/cushion.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Cushion covers, bedsheets & more</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col  d-flex flex-column" href="/category/figurines">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/vases.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Figurines, vases & more</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/storage">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/storage.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Home storage</span>
+                                        </div>
+                                    </a>
+                                    <a class="shopping-container-col d-flex flex-column" href="/category/lighting">
+                                        <div class="shopping-container-image flex-grow-1">
+                                            <img src="{% static 'images/lighting.jpg' %}">
+                                        </div>
+                                        <div class="shopping-container-text">
+                                            <span class="truncate-2line">Lighting solutions</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <a href="#" class="see-more">Explore all</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+{% endblock %}

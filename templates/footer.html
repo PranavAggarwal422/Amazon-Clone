@@ -1,0 +1,62 @@
+{% load static %}
+<footer>
+  <a class="foot-back text-center d-block text-decoration-none" href="#top">
+    <span>Back to top</span>
+  </a>
+
+  {% if request.path != "/checkout/" %}
+  <div class="foot2">
+    <div>
+      <h3>Get to Know Us</h3>
+      <li><a>About Amazon</a></li>
+      <li><a>Careers</a></li>
+      <li><a>Press Releases</a></li>
+      <li><a>Amazon Science</a></li>
+    </div>
+
+    <div>
+      <h3>Connect with us</h3>
+      <li><a>Facebook</a></li>
+      <li><a>Twitter</a></li>
+      <li><a>Instagram</a></li>
+    </div>
+
+    <div>
+      <h3>Make Money with Us</h3>
+      <li><a>Sell products on Amazon</a></li>
+      <li><a>Sell on Amazon Business</a></li>
+      <li><a>Sell apps on Amazon</a></li>
+      <li><a>Become an Affiliate</a></li>
+      <li><a>Advertise Your Products</a></li>
+      <li><a>Self-Publish with Us</a></li>
+      <li><a>Host an Amazon Hub</a></li>
+    </div>
+
+    <div>
+      <h3>Let Us Help You</h3>
+      <li><a>Amazon and COVID-19</a></li>
+      <li><a>Your Account</a></li>
+      <li><a>Your Orders</a></li>
+      <li><a>Shipping Rates & Policies</a></li>
+      <li><a>Returns & Replacements</a></li>
+      <li><a>Manage Your Content and Devices</a></li>
+      <li><a>Help</a></li>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="bottom-logo d-flex align-items-center justify-content-center">
+    <img src="{% static 'images/amazon_logo.png' %}" />
+  </div>
+
+  <div class="bottom-copyright">
+    <div class="pages">
+      <li>Conditions of Use</li>
+      <li>Privacy Notice</li>
+      <li>Consumer Health Data Privacy Disclosure</li>
+      <li>Your Ads Privacy Choices</li>
+    </div>
+
+    <div class="copyright">© 1996-2025, Amazon.com, Inc. or its affiliates</div>
+  </div>
+</footer>
