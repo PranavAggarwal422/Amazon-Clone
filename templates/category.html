@@ -9,24 +9,24 @@
                 <div class="filter-panel-category mb-3">
                     <h5>{{option.field_name}}</h5>
                     <ul class="filter-panel-options">
-                        {% for value in option.values.all %}
+                        {% for value in option.values %}
                             {% if forloop.counter <= 7 %}
                             <li><label class="d-flex align-items-center mb-1">
-                                    <input type="checkbox"><span>{{value.value}}</span>
+                                    <input type="checkbox"><span>{{value}}</span>
                                 </label></li>
                             {% endif %}
                         {% endfor %}
-                        {% if option.values.all|length > 7 %}
+                        {% if option.values|length > 7 %}
                                 <li class="filter-panel-seeall see-all-btn"><a><i class="fa-solid fa-caret-down"></i>See
                                 more</a></li>
                         {% endif %}
                     </ul>
 
                      <ul class="filter-panel-options" style="height : 0px; overflow : hidden;">
-                        {% for value in option.values.all %}
+                        {% for value in option.values %}
                             {% if forloop.counter > 7 %}
                             <li><label class="d-flex align-items-center mb-1">
-                                    <input type="checkbox"><span>{{value.value}}</span>
+                                    <input type="checkbox"><span>{{value}}</span>
                                 </label></li>
                             {% endif %}
                         {% endfor %}

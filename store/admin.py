@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category, FilterOption, FilterOptionValue, CartItem, Order, OrderItem
+from .models import Product, Category, CartItem, Order, OrderItem
 
 # Register your models here.
 
@@ -31,20 +31,6 @@ class ProductAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
-
-
-@admin.register(FilterOption)
-class FilterOptionAdmin(admin.ModelAdmin):
-    list_display = ('category', 'field_name')
-    list_filter = ('category',)
-    search_fields = ('field_name',)
-
-
-@admin.register(FilterOptionValue)
-class FilterOptionValueAdmin(admin.ModelAdmin):
-    list_display = ('filter_option', 'value')
-    search_fields = ('value',)
-    list_filter = ('filter_option',)
 
 @admin.register(CartItem)
 class CartItemAdmin(admin.ModelAdmin) : 

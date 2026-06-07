@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect , get_object_or_404
-from store.models import Category, Product, FilterOption , FilterOptionValue , CartItem , Order , OrderItem
+from store.models import Category, Product, CartItem , Order , OrderItem
 from .forms import CustomUserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages 
@@ -7,6 +7,8 @@ from django.utils import timezone
 from django.db.models import Q
 from store.semantic_search import semantic_search
 from store.rerank import rerank_products
+from store.ranking import calculate_score
+from store.filter_builder import build_filters
 
 def register(request) : 
     if request.method == "POST" : 
@@ -21,12 +23,14 @@ def register(request) :
 def homePage(request) : 
     return render(request , "index.html") 
 
-def category(request , category_slug) : 
-    CategoryData = Category.objects.get(category_slug = category_slug)
-    data = {}
-    data["products"]  = Product.objects.filter(category = CategoryData)
-    data["filter_options"] = FilterOption.objects.filter(category = CategoryData)
-    return render(request , "category.html" , data)
+def category(request, category_slug):
+    category_obj = get_object_or_404(Category, category_slug=category_slug)
+    products = Product.objects.filter(category=category_obj)
+    data = {
+        "products": products,
+        "filter_options": build_filters(products)
+    }
+    return render(request, "category.html", data)
 
 def product_detail(request , pk) :    
     product = Product.objects.get(id = pk) 
@@ -159,10 +163,11 @@ def search(request):
 
     products = [products_dict[pid] for pid in product_ids if pid in products_dict]
     products = rerank_products(query, products)
+    products = sorted(products, key = calculate_score, reverse = True)
 
     data = {
         "products": products,
-        "filter_options": []
+        "filter_options": build_filters(products)
     }
 
     return render(request, "category.html", data)
