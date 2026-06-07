@@ -154,6 +154,9 @@ def buy_now(request , product_id) :
 
 def search(request):
     query = request.GET.get("q", "").strip()
+    selected_brands = request.GET.getlist("brand")
+    selected_categories = request.GET.getlist("category")
+
     if not query:
         return redirect("home")
 
@@ -162,12 +165,27 @@ def search(request):
     products_dict = Product.objects.in_bulk(product_ids)
 
     products = [products_dict[pid] for pid in product_ids if pid in products_dict]
+
     products = rerank_products(query, products)
     products = sorted(products, key = calculate_score, reverse = True)
 
+    all_filter_options = build_filters(products)
+
+    if selected_brands:
+        products = [p for p in products if p.brand in selected_brands]
+
+    if selected_categories:
+        products = [p for p in products if p.category.name in selected_categories]
+
+    
+    selected_filters = {}
+    for key in request.GET:
+        selected_filters[key] = request.GET.getlist(key)
+
     data = {
         "products": products,
-        "filter_options": build_filters(products)
+        "filter_options": all_filter_options,
+        "selected_filters": selected_filters,
     }
 
     return render(request, "category.html", data)

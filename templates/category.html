@@ -2,9 +2,11 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
+{% load custom_filters %}
 
         <div class="category-container pt-3 mx-1 d-flex">
-            <div class="filter-panel">
+            <form method="GET" class="filter-panel" id="filter-form">
+                <input type="hidden" name="q" value="{{ request.GET.q }}">
                 {% for option in filter_options %}
                 <div class="filter-panel-category mb-3">
                     <h5>{{option.field_name}}</h5>
@@ -12,7 +14,16 @@
                         {% for value in option.values %}
                             {% if forloop.counter <= 7 %}
                             <li><label class="d-flex align-items-center mb-1">
-                                    <input type="checkbox"><span>{{value}}</span>
+                                {% with filter_key=option.field_name|lower %}
+                                    <input type="checkbox"
+                                    name="{{ filter_key}}"
+                                    value="{{ value }}"
+                                    {% if value in selected_filters|get_item:filter_key %}
+                                    checked
+                                    {% endif %}
+                                    onchange="document.getElementById('filter-form').submit();">
+                                {% endwith %}
+                                    <span>{{value}}</span>
                                 </label></li>
                             {% endif %}
                         {% endfor %}
@@ -26,7 +37,14 @@
                         {% for value in option.values %}
                             {% if forloop.counter > 7 %}
                             <li><label class="d-flex align-items-center mb-1">
-                                    <input type="checkbox"><span>{{value}}</span>
+                                    <input type="checkbox"
+                                    name="{{ option.field_name|lower }}"
+                                    value="{{ value }}"
+                                    {% if value in selected_filters|get_item:option.field_name|lower %}
+                                    checked
+                                    {% endif %}
+                                    onchange="document.getElementById('filter-form').submit();"
+                                    ><span>{{value}}</span>
                                 </label></li>
                             {% endif %}
                         {% endfor %}
@@ -37,7 +55,8 @@
 
                 </div>
                 {% endfor %}
-            </div>
+            </form>
+
             <div class="products-container flex-grow-1 ps-2">
                 <div class="category-container-heading">
                     <h2>Results</h2>
