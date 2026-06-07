@@ -48,7 +48,7 @@
 
                             <div class="shopping-container-img flex-grow-1 d-flex flex-column">
                                 <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/air-conditioner">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=air+conditioner">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/AC.jpg' %}">
                                         </div>
@@ -56,7 +56,7 @@
                                             <span class="truncate-2line">Air Conditioners</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/refrigerator">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=refrigerator">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/Refrigerator.jpg' %}">
                                         </div>
@@ -67,7 +67,7 @@
                                 </div>
 
                                 <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/microwave">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=microwave">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/Microwave.jpg' %}">
                                         </div>
@@ -75,7 +75,7 @@
                                             <span class="truncate-2line">Microwaves</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/washing-machine">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=washing+machine">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/Washing machine.jpg' %}">
                                         </div>
@@ -96,7 +96,7 @@
 
                             <div class="shopping-container-img flex-grow-1 d-flex flex-column">
                                 <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/bedsheet">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=bedroom+linen">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/cushion.jpg' %}">
                                         </div>
@@ -104,7 +104,7 @@
                                             <span class="truncate-2line">Cushion covers, bedsheets & more</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/figurines">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=figurines+vases">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/vases.jpg' %}">
                                         </div>
@@ -115,7 +115,7 @@
                                 </div>
 
                                 <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/storage">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=home+storage">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/storage.jpg' %}">
                                         </div>
@@ -123,7 +123,7 @@
                                             <span class="truncate-2line">Home storage</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/lighting">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=lighting">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/lighting.jpg' %}">
                                         </div>
@@ -144,39 +144,39 @@
 
                             <div class="shopping-container-img flex-grow-1 d-flex flex-column">
                                 <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/cleaning-supplies">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=household+supplies">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/home_essentials.jpg' %}">
                                         </div>
                                         <div class="shopping-container-text">
-                                            <span class="truncate-2line">Under ₹199 | Cleaning supplies</span>
+                                            <span class="truncate-2line">Cleaning supplies</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/bathroom-accessories">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=bathroom+accessories">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/bathroom accessories.jpg' %}">
                                         </div>
                                         <div class="shopping-container-text">
-                                            <span class="truncate-2line">Under ₹399 | Bathroom accessories</span>
+                                            <span class="truncate-2line">Bathroom accessories</span>
                                         </div>
                                     </a>
                                 </div>
 
                                 <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/home-tools">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=tools">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/home tools.jpg' %}">
                                         </div>
                                         <div class="shopping-container-text">
-                                            <span class="truncate-2line">Under ₹499 | Home tools</span>
+                                            <span class="truncate-2line">Home tools</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/wallpapers">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=wall+decor">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/wallpaper.jpg' %}">
                                         </div>
                                         <div class="shopping-container-text">
-                                            <span class="truncate-2line">Under ₹299 | Wallpapers</span>
+                                            <span class="truncate-2line">Wallpapers</span>
                                         </div>
                                     </a>
                                 </div>
@@ -192,7 +192,7 @@
 
                             <div class="shopping-container-img flex-grow-1 d-flex flex-column">
                                 <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/boat">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=Boat+headphone&brand=boAt">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/boat.jpg' %}">
                                         </div>
@@ -200,7 +200,7 @@
                                             <span class="truncate-2line">Boat</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/boult">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=Boult+headphone&brand=Boult">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/boult.jpg' %}">
                                         </div>
@@ -211,7 +211,7 @@
                                 </div>
 
                                 <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/noise">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=Noise+headphone&brand=Noise">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/noise.jpg' %}">
                                         </div>
@@ -219,7 +219,7 @@
                                             <span class="truncate-2line">noise</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/zebronic">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=Zebronics+headphone&brand=Zebronics">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/zebronic.jpg' %}">
                                         </div>
@@ -240,7 +240,7 @@
 
                             <div class="shopping-container-img flex-grow-1 d-flex flex-column">
                                 <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/kurta-sets">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=kurta+set">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/kurta.jpg' %}">
                                         </div>
@@ -248,7 +248,7 @@
                                             <span class="truncate-2line">Kurta & sets</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/tops">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=tops">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/tops.jpg' %}">
                                         </div>
@@ -259,7 +259,7 @@
                                 </div>
 
                                 <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/dresses">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=women+dresses">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/dresses.jpg' %}">
                                         </div>
@@ -267,7 +267,7 @@
                                             <span class="truncate-2line">Dresses</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/sarees">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=saree">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/sarees.jpg' %}">
                                         </div>
@@ -288,7 +288,7 @@
 
                             <div class="shopping-container-img flex-grow-1 d-flex flex-column">
                                 <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/cleaning-accessories">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=car+cleaning+accessories">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/cleaning_access.jpg' %}">
                                         </div>
@@ -296,7 +296,7 @@
                                             <span class="truncate-2line">Cleaning accessories</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/tyre-and-rim-care">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=tyre+and+rim+care">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/tyre.jpg' %}">
                                         </div>
@@ -307,7 +307,7 @@
                                 </div>
 
                                 <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/helmets">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=helmets">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/helmet.jpg' %}">
                                         </div>
@@ -315,7 +315,7 @@
                                             <span class="truncate-2line">Helmets</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/vacuum-cleaner">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=vaccum+cleaner">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/vaccum cleaner.jpg' %}">
                                         </div>
@@ -336,7 +336,7 @@
 
                             <div class="shopping-container-img flex-grow-1 d-flex flex-column">
                                 <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/bedsheet">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=bedroom+linen">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/bedsheet.jpg' %}">
                                         </div>
@@ -344,7 +344,7 @@
                                             <span class="truncate-2line">Bedsheets</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/curtains">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=curtains">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/curtain.jpg' %}">
                                         </div>
@@ -355,7 +355,7 @@
                                 </div>
 
                                 <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/ironing-board">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=ironing+board">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/ironing_board.jpg' %}">
                                         </div>
@@ -363,7 +363,7 @@
                                             <span class="truncate-2line">Ironing board</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/home-decor">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=home+decor">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/decor.jpg' %}">
                                         </div>
@@ -384,7 +384,7 @@
 
                             <div class="shopping-container-img flex-grow-1 d-flex flex-column">
                                 <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/diaper-wipes">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=diapers">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/diaper.jpg' %}">
                                         </div>
@@ -392,7 +392,7 @@
                                             <span class="truncate-2line">Diaper & wipes</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/rc-cars">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=rc+car+toy">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/rc_car.jpg' %}">
                                         </div>
@@ -403,7 +403,7 @@
                                 </div>
 
                                 <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/ride-on-toy">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=ride+on+toy">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/rideon.jpg' %}">
                                         </div>
@@ -411,7 +411,7 @@
                                             <span class="truncate-2line">Ride-On toy</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/baby-safety">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=baby+safety">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/baby_safety.jpg' %}">
                                         </div>
@@ -432,7 +432,7 @@
 
                             <div class="shopping-container-img flex-grow-1 d-flex flex-column">
                                 <div class="shopping-container-row1 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/bedsheet">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=bedroom+linen">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/cushion.jpg' %}">
                                         </div>
@@ -440,7 +440,7 @@
                                             <span class="truncate-2line">Cushion covers, bedsheets & more</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col  d-flex flex-column" href="/category/figurines">
+                                    <a class="shopping-container-col  d-flex flex-column" href="{% url 'search' %}?q=figurines+vases">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/vases.jpg' %}">
                                         </div>
@@ -451,7 +451,7 @@
                                 </div>
 
                                 <div class="shopping-container-row2 d-flex gap-2 flex-grow-1">
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/storage">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=home+storage">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/storage.jpg' %}">
                                         </div>
@@ -459,7 +459,7 @@
                                             <span class="truncate-2line">Home storage</span>
                                         </div>
                                     </a>
-                                    <a class="shopping-container-col d-flex flex-column" href="/category/lighting">
+                                    <a class="shopping-container-col d-flex flex-column" href="{% url 'search' %}?q=lighting">
                                         <div class="shopping-container-image flex-grow-1">
                                             <img src="{% static 'images/lighting.jpg' %}">
                                         </div>
