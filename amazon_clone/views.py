@@ -172,12 +172,14 @@ def search(request):
     all_filter_options = build_filters(products)
 
     if selected_brands:
-        products = [p for p in products if p.brand in selected_brands]
-
-    if selected_categories:
-        products = [p for p in products if p.category.name in selected_categories]
+        selected_brands = {brand.lower() for brand in selected_brands}
+        products = [p for p in products if p.brand.lower() in selected_brands]
 
     
+    if selected_categories:
+        selected_categories = {c.lower() for c in selected_categories}
+        products = [p for p in products if p.category.name.lower() in selected_categories]
+        
     selected_filters = {}
     for key in request.GET:
         selected_filters[key] = request.GET.getlist(key)

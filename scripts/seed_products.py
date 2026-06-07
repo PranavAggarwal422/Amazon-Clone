@@ -154,6 +154,33 @@ def generate_specifications(row):
 
     return specs
 
+def generate_brand(product_name):
+    product_name = str(product_name).strip()
+    words = product_name.split()
+    if not words:
+        return "Generic"
+
+    brand = words[0]
+
+    # Remove punctuation
+    brand = brand.strip("-:,.;()[]{}")
+
+    # Numeric brands like 6.5, 7, 1.5 etc.
+    try:
+        float(brand)
+        return "Generic"
+    except:
+        pass
+
+    # Avoid one-character brands
+    if len(brand) <= 1:
+        return "Generic"
+
+    if brand.isupper() and len(brand) <= 5:
+        return brand[:100]
+
+    return brand.title()[:100]
+
 # ---------------- SAMPLING RULE ----------------
 
 def get_sample_size(total_rows):
@@ -278,7 +305,7 @@ for file in csv_files:
                     discount_percent = discount_percent,
 
                     category = category_obj,
-                    brand = product_name.split()[0][:100],
+                    brand = generate_brand(product_name),
 
                     specifications = specifications,
                     description = description,
