@@ -10,7 +10,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     image_url = models.URLField(blank=True)
-    name = models.CharField(max_length=500)
+    name = models.CharField(max_length=500, unique = True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     mrp = models.DecimalField(max_digits=10, decimal_places=2)
     discount_percent = models.FloatField(blank=True, null=True)

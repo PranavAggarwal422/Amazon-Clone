@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages 
 from django.utils import timezone
 from django.db.models import Q
+from store.semantic_search import semantic_search
+from store.rerank import rerank_products
 
 def register(request) : 
     if request.method == "POST" : 
@@ -145,27 +147,22 @@ def buy_now(request , product_id) :
 
     return render(request , "checkout.html" , {"product" : product , "total_price" : product.price})
     
+
 def search(request):
     query = request.GET.get("q", "").strip()
     if not query:
         return redirect("home")
-    
-    keywords = query.split()
-    data = {}
 
-    products = Product.objects.filter(
-        Q(name__icontains=query) | Q(description__icontains=query)
-    )
+    search_results = semantic_search(query)
+    product_ids = [product_id for product_id, score in search_results]
+    products_dict = Product.objects.in_bulk(product_ids)
 
-    # If no exact match word-by-word search 
-    if not products.exists():
-        products = Product.objects.all()
-        for word in keywords:
-            products = products.filter(Q(name__icontains=word) | Q(description__icontains=word))
+    products = [products_dict[pid] for pid in product_ids if pid in products_dict]
+    products = rerank_products(query, products)
 
-    data["products"] = products.distinct()
-
-    if products.exists():
-        data["filter_options"] = FilterOption.objects.filter(category=products.first().category)
+    data = {
+        "products": products,
+        "filter_options": []
+    }
 
     return render(request, "category.html", data)
