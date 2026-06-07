@@ -13,18 +13,20 @@
                     <ul class="filter-panel-options">
                         {% for value in option.values %}
                             {% if forloop.counter <= 7 %}
-                            <li><label class="d-flex align-items-center mb-1">
-                                {% with filter_key=option.field_name|lower %}
-                                    <input type="checkbox"
-                                    name="{{ filter_key}}"
-                                    value="{{ value }}"
-                                    {% if value in selected_filters|get_item:filter_key %}
-                                    checked
-                                    {% endif %}
-                                    onchange="document.getElementById('filter-form').submit();">
-                                {% endwith %}
-                                    <span>{{value}}</span>
-                                </label></li>
+                            <li>
+                                <label class="d-flex align-items-center mb-1">
+                                    {% with filter_key=option.field_name|lower %}
+                                        <input type="checkbox"
+                                        name="{{ filter_key}}"
+                                        value="{{ value }}"
+                                        {% if value in selected_filters|get_item:filter_key %}
+                                        checked
+                                        {% endif %}
+                                        onchange="document.getElementById('filter-form').submit();">
+                                    {% endwith %}
+                                        <span>{{value}}</span>
+                                </label>
+                            </li>
                             {% endif %}
                         {% endfor %}
                         {% if option.values|length > 7 %}
@@ -36,16 +38,20 @@
                      <ul class="filter-panel-options" style="height : 0px; overflow : hidden;">
                         {% for value in option.values %}
                             {% if forloop.counter > 7 %}
-                            <li><label class="d-flex align-items-center mb-1">
-                                    <input type="checkbox"
-                                    name="{{ option.field_name|lower }}"
-                                    value="{{ value }}"
-                                    {% if value in selected_filters|get_item:option.field_name|lower %}
-                                    checked
-                                    {% endif %}
-                                    onchange="document.getElementById('filter-form').submit();"
-                                    ><span>{{value}}</span>
-                                </label></li>
+                            <li>
+                                <label class="d-flex align-items-center mb-1">
+                                    {% with filter_key=option.field_name|lower %}
+                                        <input type="checkbox"
+                                            name="{{ filter_key }}"
+                                            value="{{ value }}"
+                                            {% if value in selected_filters|get_item:filter_key %}
+                                                checked
+                                            {% endif %}
+                                            onchange="document.getElementById('filter-form').submit();">
+                                    {% endwith %}
+                                    <span>{{ value }}</span>
+                                </label>
+                            </li>
                             {% endif %}
                         {% endfor %}
                         
