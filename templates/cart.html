@@ -9,7 +9,12 @@
     <div class="row align-items-start py-4 border-bottom">
         <!-- Product Image -->
         <div class="col-md-2">
-            <img src="{{ item.product.image_url }}" class="img-fluid" alt="{{ item.product.name}}">
+            <img
+                src="{% if item.product.image_url %}{{ item.product.image_url }}{% else %}{% static 'images/no-image.webp' %}{% endif %}"
+                class="img-fluid"
+                alt="{{ item.product.name }}"
+                onerror="this.onerror=null;this.src='{% static 'images/no-image.webp' %}';"
+            >
         </div>
 
         <!-- Product Info -->
@@ -43,14 +48,14 @@
         <!-- Price -->
         <div class="col-md-2 text-end">
             <span class="badge bg-danger mb-1">{{item.product.discount_percent}}% off</span><br>
-            <h4>₹{{ item.product.price|floatformat|intcomma }}</h4>
-            <small class="text-muted">M.R.P.: <del>₹{{ item.product.mrp|floatformat|intcomma }}</del></small>
+            <h4>₹{{ item.product.price|floatformat:0|intcomma }}</h4>
+            <small class="text-muted">M.R.P.: <del>₹{{ item.product.mrp|floatformat:0|intcomma }}</del></small>
         </div>
     </div>
     {% endfor %}
 
     <div class="text-end mt-4">
-        <h4>Total ({{cart_item_count}} {% if  cart_item_count > 1 %}items{% else %}item{% endif %}): ₹{{ total_price|floatformat|intcomma }}</h4>
+        <h4>Total ({{cart_item_count}} {% if  cart_item_count > 1 %}items{% else %}item{% endif %}): ₹{{ total_price|floatformat:0|intcomma }}</h4>
         {% if total_price != 0 %}
         <a class="btn checkout-btn" href  = "{% url 'checkout' %}">Proceed to Buy</a>
         {% endif %}

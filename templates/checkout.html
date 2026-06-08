@@ -65,7 +65,7 @@
               <small>Quantity: {{ item.quantity }}</small>
             </div>
             
-            <span>₹{{ item.subtotal|floatformat|intcomma }}</span>
+            <span>₹{{ item.subtotal|floatformat:0|intcomma }}</span>
           </div>
           <hr>
           {% endfor %}
@@ -77,14 +77,14 @@
               <small>Quantity: {{ 1 }}</small>
             </div>
             
-            <span>₹{{product.price|floatformat|intcomma }}</span>
+            <span>₹{{product.price|floatformat:0|intcomma }}</span>
           </div>
           <hr>
           {% endif %}
 
           <div class="d-flex justify-content-between">
             <strong>Total Price:</strong>
-            <strong>₹{{ total_price|floatformat|intcomma}}</strong>
+            <strong>₹{{ total_price|floatformat:0|intcomma}}</strong>
           </div>
 
           <button type="submit" class="btn btn-primary w-100 mt-4">Place Order</button>

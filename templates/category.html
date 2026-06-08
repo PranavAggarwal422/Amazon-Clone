@@ -71,8 +71,12 @@
 
                 {% for product in products %}
                     <div class="product">
-                        <a class="product-img" href = "{% url 'product_detail' product.id %}">
-                            <img src="{{ product.image_url }}" alt="{{ product.name }}">
+                        <a class="product-img" href="{% url 'product_detail' product.id %}">
+                            <img
+                                src="{% if product.image_url %}{{ product.image_url }}{% else %}{% static 'images/no-image.webp' %}{% endif %}"
+                                alt="{{ product.name }}"
+                                onerror="this.onerror=null;this.src='{% static 'images/no-image.webp' %}';"
+                            >
                         </a>
                         <div class="product-details">
                             <a  href = "{% url 'product_detail' product.id %}">

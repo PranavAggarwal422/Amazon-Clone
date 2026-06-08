@@ -59,18 +59,22 @@
   <div class="card mb-3">
     <div class="row g-0">
       <div class="col-md-2 text-center p-2">
-        {% if item.product_image %}
-          <img src="{{ item.product_image}}" class="img-fluid rounded" style="max-height: 100px;">
-        {% else %}
-          <img src="{% static 'default-product.png' %}" class="img-fluid rounded" style="max-height: 100px;">
-        {% endif %}
+      <img
+          src="{% if item.product_image %}{{ item.product_image }}{% else %}{% static 'images/no-image.webp' %}{% endif %}"
+          class="img-fluid rounded"
+          style="max-height: 100px;"
+
+          alt="Product Image"
+          onerror="this.onerror=null;this.src='{% static 'images/no-image.webp' %}';"
+      >
       </div>
+
       <div class="col-md-10">
         <div class="card-body">
           <h6 class="card-title mb-1">{{ item.product_name }}</h6>
-          <p class="mb-1">Price: ₹{{ item.product_price_at_order|floatformat|intcomma }}</p>
+          <p class="mb-1">Price: ₹{{ item.product_price_at_order|floatformat:0|intcomma }}</p>
           <p class="mb-1">Quantity: {{ item.quantity }}</p>
-          <p class="mb-0">Subtotal: ₹{{ item.subtotal|floatformat|intcomma }}</p>
+          <p class="mb-0">Subtotal: ₹{{ item.subtotal|floatformat:0|intcomma }}</p>
         </div>
       </div>
     </div>
