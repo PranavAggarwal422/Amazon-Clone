@@ -920,6 +920,44 @@ footer li:hover{
     background-color : #fa8900 ;
 }
 
+/* similar products */
+.similar-products-container {
+    margin-bottom: 40px;
+}
+
+.similar-products-grid {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.similar-product-card {
+    min-width: 180px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.similar-product-card img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+}
+
+.similar-product-card p {
+    margin-top: 8px;
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4em; 
+    min-height: 2.8em;
+
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
 
 /* authentication */
 

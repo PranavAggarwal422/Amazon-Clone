@@ -4,7 +4,13 @@
 {% block content %}
         <div class="product-container d-flex px-3 mt-4">
             <div class="product-img-container">
-                <img src="{{ product.image_url }}" alt="{{ product.name }}">
+                <img
+                src="{% if product.image_url %}{{ product.image_url }}{% else %}{% static 'images/no-image.webp' %}{% endif %}"
+
+                alt="{{ product.name }}"
+
+                onerror="this.onerror=null;this.src='{% static 'images/no-image.webp' %}';"
+                >
             </div>
 
             <div class="product-details-container">
@@ -15,14 +21,14 @@
 
                 <div class="product-details-container-price">
                     <div class="product-price-details d-flex align-items-center">
-                        <span class="product-discount">-{{product.discount_percent|floatformat}}%</span>
+                        <span class="product-discount">-{{product.discount_percent|floatformat:0}}%</span>
                         <div class="price-details">
                             <span class="price-details-currency">₹</span>
-                            <span class="price-details-price">{{product.price|floatformat|intcomma}}</span>
+                            <span class="price-details-price">{{product.price|floatformat:0|intcomma}}</span>
                         </div>
                     </div>
                     <div class="mrp-details">
-                            <span class="mrp-details-mrp">M.R.P.: <span style = "text-decoration: line-through">₹{{product.mrp|floatformat|intcomma}}</span></span>
+                            <span class="mrp-details-mrp">M.R.P.: <span style = "text-decoration: line-through">₹{{product.mrp|floatformat:0|intcomma}}</span></span>
                     </div>
                     <span style = "font-size: 14px; line-height: 20px;margin-left: 5px;">Inclusive of all taxes</span>
                 </div>
@@ -141,4 +147,30 @@
                 </div>
             </div>
         </div>
+
+        {% if similar_products %}
+        <div class="similar-products-container px-3 mt-4">
+            <h2>Similar Products</h2>
+
+            <div class="similar-products-grid">
+                {% for item in similar_products %}
+                <a href="{% url 'product_detail' item.id %}" class="similar-product-card">
+                    <img
+                    src="{% if item.image_url %}{{ item.image_url }}{% else %}{% static 'images/no-image.webp' %}{% endif %}"
+
+                    alt="{{ item.name }}"
+
+                    onerror="this.onerror=null;this.src='{% static 'images/no-image.webp' %}';"
+                    >
+                    <p>{{ item.name|truncatechars:50 }}</p>
+
+                    <div>
+                        ₹{{ item.price|floatformat:0|intcomma }}
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
 {% endblock %}

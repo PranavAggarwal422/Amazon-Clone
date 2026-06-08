@@ -1,14 +1,16 @@
 from django.shortcuts import render, redirect , get_object_or_404
-from store.models import Category, Product, CartItem , Order , OrderItem
 from .forms import CustomUserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages 
 from django.utils import timezone
 from django.db.models import Q
+
+from store.models import Category, Product, CartItem , Order , OrderItem
 from store.semantic_search import semantic_search
 from store.rerank import rerank_products
 from store.ranking import calculate_score
 from store.filter_builder import build_filters
+from store.recommendations import get_similar_products
 
 def register(request) : 
     if request.method == "POST" : 
@@ -32,9 +34,16 @@ def category(request, category_slug):
     }
     return render(request, "category.html", data)
 
-def product_detail(request , pk) :    
-    product = Product.objects.get(id = pk) 
-    return render(request , "product.html" , {"product" : product})
+def product_detail(request, pk):
+    product = Product.objects.get(id = pk)
+    similar_products = get_similar_products(product)
+
+    return render(request, "product.html",
+        {
+            "product": product,
+            "similar_products": similar_products,
+        }
+    )
 
 @login_required
 def view_cart(request) : 
@@ -179,7 +188,7 @@ def search(request):
     if selected_categories:
         selected_categories = {c.lower() for c in selected_categories}
         products = [p for p in products if p.category.name.lower() in selected_categories]
-        
+
     selected_filters = {}
     for key in request.GET:
         selected_filters[key] = request.GET.getlist(key)
