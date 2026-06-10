@@ -24,8 +24,7 @@
                 <img
                     src="{% if item.product_image %}{{ item.product_image }}{% else %}{% static 'images/no-image.webp' %}{% endif %}"
                     alt="{{ item.product.name }}"
-                    width="90px"
-                    class="me-3"
+                    class="order-product-image me-3"
                     onerror="this.onerror=null;this.src='{% static 'images/no-image.webp' %}';"
                 >
                 <div>

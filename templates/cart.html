@@ -11,7 +11,7 @@
         <div class="col-md-2">
             <img
                 src="{% if item.product.image_url %}{{ item.product.image_url }}{% else %}{% static 'images/no-image.webp' %}{% endif %}"
-                class="img-fluid"
+                class="cart-product-image"
                 alt="{{ item.product.name }}"
                 onerror="this.onerror=null;this.src='{% static 'images/no-image.webp' %}';"
             >
