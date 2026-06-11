@@ -8,39 +8,38 @@
   <div class="foot2">
     <div>
       <h3>Get to Know Us</h3>
-      <li><a>About Amazon</a></li>
-      <li><a>Careers</a></li>
-      <li><a>Press Releases</a></li>
-      <li><a>Amazon Science</a></li>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'search' %}?q=laptop">Computers</a></li>
+      <li><a href="{% url 'search' %}?q=television">Electronics</a></li>
+      <li><a href="{% url 'search' %}?q=kurta">Fashion</a></li>
     </div>
 
     <div>
-      <h3>Connect with us</h3>
-      <li><a>Facebook</a></li>
-      <li><a>Twitter</a></li>
-      <li><a>Instagram</a></li>
+      <h3>Explore</h3>
+      <li><a href="{% url 'search' %}?q=headphone">Headphones</a></li>
+      <li><a href="{% url 'search' %}?q=watch">Watches</a></li>
+      <li><a href="{% url 'search' %}?q=laptop">Laptop</a></li>
     </div>
 
     <div>
-      <h3>Make Money with Us</h3>
-      <li><a>Sell products on Amazon</a></li>
-      <li><a>Sell on Amazon Business</a></li>
-      <li><a>Sell apps on Amazon</a></li>
-      <li><a>Become an Affiliate</a></li>
-      <li><a>Advertise Your Products</a></li>
-      <li><a>Self-Publish with Us</a></li>
-      <li><a>Host an Amazon Hub</a></li>
+      <h3>Shop by Category</h3>
+      <li><a href="{% url 'search' %}?q=backpack">Bags & Luggage</a></li>
+      <li><a href="{% url 'search' %}?q=toy">Toys & Games</a></li>
+      <li><a href="{% url 'search' %}?q=sports+shoes">Sports</a></li>
+      <li><a href="{% url 'search' %}?q=car+accessories">Car & Motorbike</a></li>
+      <li><a href="{% url 'search' %}?q=bedroom+linen">Home & Kitchen</a></li>
     </div>
 
     <div>
       <h3>Let Us Help You</h3>
-      <li><a>Amazon and COVID-19</a></li>
-      <li><a>Your Account</a></li>
-      <li><a>Your Orders</a></li>
-      <li><a>Shipping Rates & Policies</a></li>
-      <li><a>Returns & Replacements</a></li>
-      <li><a>Manage Your Content and Devices</a></li>
-      <li><a>Help</a></li>
+      {% if user.is_authenticated %}
+      <li><a href="{% url 'my_orders' %}">My Orders</a></li>
+      <li><a href="{% url 'view_cart' %}">Shopping Cart</a></li>
+      <li><a href="{% url 'home' %}">Continue Shopping</a></li>
+      {% else %}
+      <li><a href="{% url 'login' %}">Sign In</a></li>
+      <li><a href="{% url 'register' %}">Create Account</a></li>
+      {% endif %}
     </div>
   </div>
   {% endif %}
@@ -50,13 +49,6 @@
   </div>
 
   <div class="bottom-copyright">
-    <div class="pages">
-      <li>Conditions of Use</li>
-      <li>Privacy Notice</li>
-      <li>Consumer Health Data Privacy Disclosure</li>
-      <li>Your Ads Privacy Choices</li>
-    </div>
-
-    <div class="copyright">© 1996-2025, Amazon.com, Inc. or its affiliates</div>
+    <div class="copyright">©2026, ML-Powered Product Search & Recommendation Platform</div>
   </div>
 </footer>

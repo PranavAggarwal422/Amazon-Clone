@@ -34,7 +34,7 @@
                 </form>
             </div>
 
-            <div class="cart-action d-flex flex-wrap gap-3">
+            {% comment %} <div class="cart-action d-flex flex-wrap gap-3">
                 <form action="{% url 'delete_from_cart' item.id %}" method="post" class = "d-flex">
                     {% csrf_token %}
                     <button class="btn p-0 text-primary">Delete</button>
@@ -42,7 +42,7 @@
                 <a href="#" class="btn p-0 text-primary">Save for later</a>
                 <a href="#" class="btn p-0 text-primary">See more like this</a>
                 <a href="#" class="btn p-0 text-primary">Share</a>
-            </div>
+            </div> {% endcomment %}
         </div>
 
         <!-- Price -->

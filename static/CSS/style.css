@@ -411,6 +411,10 @@ footer{
     font-weight : 700 ; 
     font-size : 16px ; 
 }
+.foot2 a{
+    text-decoration: none;
+    color: inherit;
+}
 footer li{
     list-style-type : none ; 
     color : #DDDDDD ;  
@@ -518,7 +522,10 @@ footer li:hover{
     justify-content : space-between ; 
     align-items : center ; 
     max-height : 16px ; 
+    text-decoration: none;
+    color: inherit;
 }
+
 .offcanvas-section i { 
     font-size : 18px ; 
     color : gray ; 
