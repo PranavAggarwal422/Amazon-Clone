@@ -29,11 +29,11 @@
       <form action = "{% url 'search' %}">
         <div class="search-bar d-flex">
           <div>
-            <select class="nav-search-select" id="category-select" name = "search_category">
-              <option value="">All</option>
-              {% for category in all_categories %}
-              <option value="{{ category.id }}">{{ category.name }}</option>
-              {% endfor %}
+            <select class="nav-search-select" id="category-select" name="category">
+                <option value="">All</option>
+                {% for category in all_categories %}
+                <option value="{{ category.name }}">{{ category.name }}</option>
+                {% endfor %}
             </select>
           </div>
           <div class="nav-search-text">

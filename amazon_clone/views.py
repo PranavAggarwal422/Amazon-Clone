@@ -168,7 +168,7 @@ def buy_now(request , product_id) :
 def search(request):
     query = request.GET.get("q", "").strip()
     selected_brands = request.GET.getlist("brand")
-    selected_categories = request.GET.getlist("category")
+    selected_categories = [c for c in request.GET.getlist("category") if c]
 
     if not query:
         return redirect("home")
@@ -196,12 +196,6 @@ def search(request):
             products.append(product)
             seen_ids.add(product.id)
 
-    # Cohere rerank
-    products = rerank_products(query, products)
-
-    # Ranking based on rating, reviews and popularity_score
-    products = sorted(products, key = calculate_score, reverse=True)
-
     # Build filters BEFORE applying filters
     all_filter_options = build_filters(products)
 
@@ -220,6 +214,15 @@ def search(request):
             p for p in products
             if p.category.name.lower() in selected_categories
         ]
+
+    # Cohere rerank
+    products = rerank_products(query, products)
+
+    # Ranking based on rating, reviews and popularity_score
+    products = sorted(products, key = calculate_score, reverse=True)
+
+    # Show only top 10
+    products = products[:10]
 
     # Store all selected filters generically
     selected_filters = {}
