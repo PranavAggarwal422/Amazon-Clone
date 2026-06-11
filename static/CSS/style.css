@@ -756,13 +756,13 @@ footer li:hover{
 /* product page  */
 .product-img-container{
     width : 40% ; 
-    height : 43vh ; 
+    /* height : 43vh ;  */
     min-height  : 453px ; 
     flex-shrink : 0 ; 
     position : sticky ; 
     top : 0px ; 
     display : flex ;
-    align-items:center ; 
+    /* align-items:center ;  */
     justify-content : center ;
     overflow : hidden ;
 }
@@ -1030,4 +1030,47 @@ footer li:hover{
     height: 90px;
     object-fit: contain;
     flex-shrink: 0;
+}
+
+
+/* Personalized recommendations */
+
+.similar-products-container {
+    background: white;
+    padding: 20px;
+    margin-top: 25px;
+}
+
+.similar-products-container h2 {
+    font-size: 21px;
+    margin-bottom: 15px;
+}
+
+.similar-products-grid {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.similar-product-card {
+    min-width: 180px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.similar-product-card img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+}
+
+.similar-product-card p {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.3;
+}
+
+.similar-product-card:hover p {
+    color: #2162A1;
 }

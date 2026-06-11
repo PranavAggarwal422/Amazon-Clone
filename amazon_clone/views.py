@@ -10,7 +10,7 @@ from store.semantic_search import semantic_search
 from store.rerank import rerank_products
 from store.ranking import calculate_score
 from store.filter_builder import build_filters
-from store.recommendations import get_similar_products
+from store.recommendations import get_similar_products, get_personalized_recommendations
 
 def register(request) : 
     if request.method == "POST" : 
@@ -22,8 +22,12 @@ def register(request) :
         form = CustomUserCreationForm() 
     return render(request , "register.html" , {"form" : form})
 
-def homePage(request) : 
-    return render(request , "index.html") 
+def homePage(request) :
+    recommendations = []
+    if request.user.is_authenticated:
+        recommendations = get_personalized_recommendations(request.user)
+ 
+    return render(request, "index.html", {"recommendations": recommendations})
 
 def category(request, category_slug):
     category_obj = get_object_or_404(Category, category_slug=category_slug)
@@ -90,7 +94,6 @@ def checkout(request) :
         phone = request.POST.get("phone")
         name = request.POST.get("name")
         payment_method = request.POST.get("payment_method")
-        print(payment_method) 
         # Create the order
         order = Order(address = address , phone = phone , name = name , payment_method = payment_method , user = request.user , total_price = total_price)
         order.save()

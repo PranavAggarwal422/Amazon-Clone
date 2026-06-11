@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load humanize %}
 {% block content %}
         <section class="carousel-section">
             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -477,4 +478,37 @@
                 </div>
             </div>
         </section>
+
+        {% if recommendations %}
+        <section class="similar-products-container mt-4">
+            <h2>Inspired by your previous purchases</h2>
+
+            <div class="similar-products-grid">
+                {% for product in recommendations %}
+                <a class="similar-product-card"
+                href="{% url 'product_detail' product.id %}">
+
+                    <img
+                        src="{% if product.image_url %}{{ product.image_url }}{% else %}{% static 'images/no-image.webp' %}{% endif %}"
+                        alt="{{ product.name }}"
+                        onerror="this.onerror=null;this.src='{% static 'images/no-image.webp' %}';"
+                    >
+
+                    <p class="truncate-2line">
+                        {{ product.name }}
+                    </p>
+
+                    <div class="price-details">
+                        <span class="price-details-currency">₹</span>
+                        <span class="price-details-price">
+                            {{ product.price|floatformat:0|intcomma }}
+                        </span>
+                    </div>
+
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
 {% endblock %}
