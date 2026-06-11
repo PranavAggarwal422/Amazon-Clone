@@ -11,6 +11,7 @@ from store.rerank import rerank_products
 from store.ranking import calculate_score
 from store.filter_builder import build_filters
 from store.recommendations import get_similar_products, get_personalized_recommendations
+from store.keyword_search import keyword_search
 
 def register(request) : 
     if request.method == "POST" : 
@@ -172,27 +173,57 @@ def search(request):
     if not query:
         return redirect("home")
 
+    # Semantic search
     search_results = semantic_search(query)
     product_ids = [product_id for product_id, score in search_results]
     products_dict = Product.objects.in_bulk(product_ids)
 
-    products = [products_dict[pid] for pid in product_ids if pid in products_dict]
+    semantic_products = [
+        products_dict[pid]
+        for pid in product_ids
+        if pid in products_dict
+    ]
 
+    # Keyword search
+    keyword_products = keyword_search(query)
+
+    # Merge both results without duplicates
+    products = []
+    seen_ids = set()
+
+    for product in semantic_products + keyword_products:
+        if product.id not in seen_ids:
+            products.append(product)
+            seen_ids.add(product.id)
+
+    # Cohere rerank
     products = rerank_products(query, products)
-    products = sorted(products, key = calculate_score, reverse = True)
 
+    # Ranking based on rating, reviews and popularity_score
+    products = sorted(products, key = calculate_score, reverse=True)
+
+    # Build filters BEFORE applying filters
     all_filter_options = build_filters(products)
 
+    # Apply selected brand filters
     if selected_brands:
         selected_brands = {brand.lower() for brand in selected_brands}
-        products = [p for p in products if p.brand.lower() in selected_brands]
+        products = [
+            p for p in products
+            if p.brand.lower() in selected_brands
+        ]
 
-    
+    # Apply selected category filters
     if selected_categories:
         selected_categories = {c.lower() for c in selected_categories}
-        products = [p for p in products if p.category.name.lower() in selected_categories]
+        products = [
+            p for p in products
+            if p.category.name.lower() in selected_categories
+        ]
 
+    # Store all selected filters generically
     selected_filters = {}
+
     for key in request.GET:
         selected_filters[key] = request.GET.getlist(key)
 
@@ -203,3 +234,4 @@ def search(request):
     }
 
     return render(request, "category.html", data)
+

@@ -8,7 +8,6 @@ collection = client.get_collection("products")
 def get_personalized_recommendations(user, top_k=8):
     recent_order_items = (OrderItem.objects.filter(order__user=user).order_by("-order__created_at")[:5])
     purchased_ids = []
-    print(recent_order_items)
 
     for item in recent_order_items:
         if item.product_id not in purchased_ids:

@@ -19,3 +19,4 @@ def semantic_search(query, top_k = 100):
     product_ids = [int(product_id) for product_id in results["ids"][0]]
     distances = results["distances"][0]
     return list(zip(product_ids, distances))
+
