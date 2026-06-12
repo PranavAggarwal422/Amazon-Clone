@@ -5,6 +5,7 @@
 {% load custom_filters %}
 
         <div class="category-container pt-3 mx-1 d-flex">
+            {% if products %}
             <form method="GET" class="filter-panel" id="filter-form">
                 <input type="hidden" name="q" value="{{ request.GET.q }}">
                 {% for option in filter_options %}
@@ -62,11 +63,20 @@
                 </div>
                 {% endfor %}
             </form>
+            {% endif %}
 
             <div class="products-container flex-grow-1 ps-2">
                 <div class="category-container-heading">
-                    <h2>Results</h2>
-                    <span>Check each product page for other buying options</span>
+                    {% if products %}
+                        <h2>Results</h2>
+                        <span>Check each product page for other buying options</span>
+                    {% else %}
+                        <h2>No results for your search query.</h2><br>
+                        <span>Try checking your spelling or use more general terms.</span><br>
+                        {% if request.GET.category %}
+                        <span>Search instead in All Categories.</span>
+                        {% endif %}
+                    {% endif %}
                 </div>
 
                 {% for product in products %}
