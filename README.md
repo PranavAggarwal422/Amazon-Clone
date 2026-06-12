@@ -137,7 +137,7 @@ Personalized Recommendations
 ## Run Locally
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/PranavAggarwal422/Amazon-Clone.git
 
 cd Amazon-Clone
 
@@ -145,8 +145,13 @@ pip install -r requirements.txt
 
 python manage.py migrate
 
+# Build vector database for semantic search python scripts/build_vector_db.py
+python scripts/build_vector_db.py
+
 python manage.py runserver
 ```
+
+Note: The repository includes a pre-populated SQLite database containing ~51,000 products. The vector database used for semantic search is generated locally using build_vector_db.py and is intentionally excluded from version control.
 
 --- 
 
